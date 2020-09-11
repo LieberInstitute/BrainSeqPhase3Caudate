@@ -1,0 +1,12 @@
+#!/bin/sh
+
+mkdir results
+
+DISVAE_DIR='/ceph/users/apua/projects/v2_caudate_gene_vae_394/code/_h/disentangling-vae'
+
+cp ${DISVAE_DIR}/hyperparam.ini ./
+
+for fold in `seq 0 9`
+do
+    python ${DISVAE_DIR}/main.py factor_caudategenes_fc5_fold_${fold} -x factor_caudategenes -m Fullyconnected5 --fold ${fold}
+done
