@@ -1,0 +1,11 @@
+mkdir eqtl_tables
+ln -s ../../../caudate_eqtl/_m/eqtl_tables/mergedEqtl_output_caudate_4features_FDR05.rda  eqtl_tables/caudate_eqtl_4features_FDR05.rda
+
+ln -s ../../../eqtl_genotype_region_interaction_caudate_dlpfc/_m/eqtl_tables/mergedEqtl_output_caudate_4features_FDR05.rda  eqtl_tables/region_interaction_caudate_dlpfc_eqtl_4features_FDR05.rda
+
+ln -s ../../../eqtl_genotype_region_interaction_caudate_hippo/_m/eqtl_tables/mergedEqtl_output_caudate_4features_FDR05.rda  eqtl_tables/region_interaction_caudate_hippo_eqtl_4features_FDR05.rda
+
+ln -s ../../../eqtl_genotype_region_interaction_dlpfc_hippo/_m/eqtl_tables/mergedEqtl_output_caudate_4features_FDR05.rda  eqtl_tables/region_interaction_dlpfc_hippo_eqtl_4features_FDR05.rda
+
+
+tar chfzv eqtl_tables.tar.gz eqtl_tables
