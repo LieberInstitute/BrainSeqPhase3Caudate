@@ -98,30 +98,26 @@ print(prop_res_fit %>% count(p.bonf.cat))
 ## Tile plot (heatmap)
 my_breaks <- c(0.05, 0.01, 0.005, 0)
 tile_plot_norm <- prop_norm_fit %>%
-    ggplot(aes(x = cell_type, y = PC, fill = log.p.bonf)) +
+    ggplot(aes(x = cell_type, y = PC, fill = log.p.bonf,
+               label=ifelse(p.bonf.sig,format(round(log.p.bonf,1), nsmall=1), ""))) +
     geom_tile(color = "grey") +
-    geom_text(aes(label=ifelse(p.bonf.sig,
-                               format(round(log.p.bonf,1), nsmall=1), ""),
-                  color=log.p.bonf),
-              size=3, fontface="bold", show.legend=FALSE) +
+    ggfittext::geom_fit_text(contrast = TRUE, aes(fontface="bold")) +
     viridis::scale_color_viridis(option = "magma") +
     viridis::scale_fill_viridis(name="-log10(p-value Bonf)", option="magma",
-                                direction=-1) +
+                                direction=-1, limits=c(0, 40)) +
     labs(title ="p-values cell-type prop~Normalized Expression", x = 'Cell Type',
          color ="p-value Bonf\nsignificance", y="Normalized Expression (PCs)") +
     ggpubr::theme_pubr(base_size = 15) +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 save_img(tile_plot_norm, paste0("tilePlot_norm_prop"))
 tile_plot_res <- prop_res_fit %>%
-    ggplot(aes(x = cell_type, y = PC, fill = log.p.bonf)) +
+    ggplot(aes(x = cell_type, y = PC, fill = log.p.bonf,
+               label=ifelse(p.bonf.sig,format(round(log.p.bonf,1), nsmall=1), ""))) +
     geom_tile(color = "grey") +
-    geom_text(aes(label=ifelse(p.bonf.sig,
-                               format(round(log.p.bonf,1), nsmall=1), ""),
-                  color=log.p.bonf),
-              size=3, fontface="bold", show.legend=FALSE) +
+    ggfittext::geom_fit_text(contrast = TRUE, aes(fontface="bold")) +
     viridis::scale_color_viridis(option = "magma") +
     viridis::scale_fill_viridis(name="-log10(p-value Bonf)", option="magma",
-                                direction=-1) +
+                                direction=-1, limits=c(0, 40)) +
     labs(title ="p-values cell-type prop~Residualized Expression", x = 'Cell Type',
          color ="p-value Bonf\nsignificance", y="Residualized Expression (PCs)") +
     ggpubr::theme_pubr(base_size = 15) +
