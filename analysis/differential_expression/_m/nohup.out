@@ -1,1 +1,17 @@
-../../../.git/annex/objects/WG/PV/SHA256E-s4058--52f412afc131f4e1fa734323403a6f35eed97e5662a294a9fc8d02f3a9c595c9.out/SHA256E-s4058--52f412afc131f4e1fa734323403a6f35eed97e5662a294a9fc8d02f3a9c595c9.out
+[NbConvertApp] Converting notebook tmp_main.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: ir
+[NbConvertApp] Converting notebook main.ipynb to html
+[NbConvertApp] Writing 1264378 bytes to main.html
+[NbConvertApp] Converting notebook main.ipynb to pdf
+[NbConvertApp] Support files will be in main_files/
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Writing 56283 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running xelatex 3 times: ['xelatex', 'notebook.tex', '-quiet']
+[NbConvertApp] Running bibtex 1 time: ['bibtex', 'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] PDF successfully created
+[NbConvertApp] Writing 568446 bytes to main.pdf

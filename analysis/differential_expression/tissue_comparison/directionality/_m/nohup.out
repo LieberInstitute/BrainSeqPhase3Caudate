@@ -1,0 +1,34 @@
+[NbConvertApp] Converting notebook tmp_main.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+[NbConvertApp] Converting notebook main.ipynb to html
+[NbConvertApp] Writing 1140526 bytes to main.html
+[NbConvertApp] Converting notebook main.ipynb to pdf
+[NbConvertApp] Support files will be in main_files/
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Making directory ./main_files
+[NbConvertApp] Writing 62327 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running xelatex 3 times: ['xelatex', 'notebook.tex', '-quiet']
+[NbConvertApp] Running bibtex 1 time: ['bibtex', 'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] PDF successfully created
+[NbConvertApp] Writing 360930 bytes to main.pdf
+[NbConvertApp] Converting notebook tmp_main_r.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: ir
+[NbConvertApp] Converting notebook main_r.ipynb to html
+[NbConvertApp] Writing 978527 bytes to main_r.html
+[NbConvertApp] Converting notebook main_r.ipynb to pdf
+[NbConvertApp] Support files will be in main_r_files/
+[NbConvertApp] Making directory ./main_r_files
+[NbConvertApp] Making directory ./main_r_files
+[NbConvertApp] Writing 43839 bytes to notebook.tex
+[NbConvertApp] Building PDF
+[NbConvertApp] Running xelatex 3 times: ['xelatex', 'notebook.tex', '-quiet']
+[NbConvertApp] Running bibtex 1 time: ['bibtex', 'notebook']
+[NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
+[NbConvertApp] PDF successfully created
+[NbConvertApp] Writing 331132 bytes to main_r.pdf
