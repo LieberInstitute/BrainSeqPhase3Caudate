@@ -11,3 +11,5 @@ inputs/*
 dep/*
 dep
 .pybiomart.sqlite
+go-basic.obo
+gene2go
