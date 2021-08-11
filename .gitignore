@@ -10,3 +10,4 @@ inputs/*
 */dep/*
 dep/*
 dep
+.pybiomart.sqlite
