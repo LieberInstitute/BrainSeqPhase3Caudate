@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir wgcna_caudate_results
+cp -v ../../_m/eigengenes.csv wgcna_caudate_results/
+cp -v ../../_m/modules.csv wgcna_caudate_results/
+cp -v ../../enrichment_comparison/_m/wgcna_module_enrichment* wgcna_caudate_results/
+cp -v ../../enrichment_comparison/_m/GO_analysis_module_* wgcna_caudate_results/
+
+tar -czvf WGCNA_output.tar.gz wgcna_caudate_results
+rm -rf wgcna_caudate_results/
