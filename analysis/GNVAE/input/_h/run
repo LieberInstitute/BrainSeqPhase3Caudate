@@ -9,6 +9,6 @@ jupyter nbconvert --execute --ExecutePreprocessor.timeout=-1 --to notebook --std
 
 jupyter nbconvert --to html ${NOTEBOOK}.ipynb
 
-#jupyter nbconvert --to pdf ${NOTEBOOK}.ipynb
+jupyter nbconvert --to pdf ${NOTEBOOK}.ipynb
 
 rm -f tmp_${NOTEBOOK}.ipynb

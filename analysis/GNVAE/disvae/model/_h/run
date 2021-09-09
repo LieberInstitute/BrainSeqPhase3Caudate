@@ -2,7 +2,7 @@
 
 mkdir results
 
-DISVAE_DIR='/ceph/users/apua/projects/v2_caudate_gene_vae_394/code/_h/disentangling-vae'
+DISVAE_DIR='/ceph/projects/v4_phase3_paper/analysis/gnvae/code/_h/disentangling-vae'
 
 cp ${DISVAE_DIR}/hyperparam.ini ./
 
