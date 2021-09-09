@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for FEATURE in genes transcripts exons junctions; do
+    Rscript ../_h/mashr_script.R --feature $FEATURE
+    # seq 1 250 | \
+    #     parallel --jobs 32 "Rscript ../_h/mashr_script.R --feature $FEATURE \
+    #                                 --run_chunk --chunk {} --chunk_size 250"
+    # cat $FEATURE/lfsr_allpairs_3tissues_*.txt.gz > \
+    #     $FEATURE/lfsr_allpairs_3tissues.txt.gz
+done
+
+#rm */lfsr_allpairs_3tissues_*.txt.gz
