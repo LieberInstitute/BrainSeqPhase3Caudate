@@ -14,16 +14,16 @@ Kleinman<sup>1,2</sup>, Jennifer A Erwin<sup>1-3,7\*</sup>,
 Daniel R Weinberger<sup>1-3,7,8\*</sup>, Apuã CM Paquola<sup>1,3\*</sup>
 
 <sup>1</sup>Lieber Institute for Brain Development, Baltimore, MD, USA
-<sup>2</sup>Department of Psychiatry & Behavioral Sciences, Johns Hopkins University School of Medicine, Baltimore, MD, USA
-<sup>3</sup>Department of Neurology, Johns Hopkins University School of Medicine, Baltimore, MD, USA
-<sup>4</sup>Center for Mathematics, Computation and Cognition, Federal University of ABC, Santo André, SP, Brazil
-<sup>5</sup>Inter-institutional Graduate Program on Bioinformatics, University of São Paulo, São Paulo, SP, Brazil
-<sup>6</sup>Institute of Mathematics and Statistics, University of São Paulo, São Paulo, SP, Brazil
-<sup>7</sup>Department of Neuroscience, Johns Hopkins University School of Medicine, Baltimore, MD, USA
-<sup>8</sup>McKusick-Nathans Institute of Genetic Medicine, Johns Hopkins University School of Medicine, Baltimore, MD, USA
-<sup>9</sup>Department of Mental Health, Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA
-<sup>10</sup>Department of Biostatistics, Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA
-<sup>11</sup>Center for Computational Biology, Johns Hopkins University, Baltimore, MD, USA
+<sup>2</sup>Department of Psychiatry & Behavioral Sciences, Johns Hopkins University School of Medicine, Baltimore, MD, USA<br/>
+<sup>3</sup>Department of Neurology, Johns Hopkins University School of Medicine, Baltimore, MD, USA<br/>
+<sup>4</sup>Center for Mathematics, Computation and Cognition, Federal University of ABC, Santo André, SP, Brazil<br/>
+<sup>5</sup>Inter-institutional Graduate Program on Bioinformatics, University of São Paulo, São Paulo, SP, Brazil<br/>
+<sup>6</sup>Institute of Mathematics and Statistics, University of São Paulo, São Paulo, SP, Brazil<br/>
+<sup>7</sup>Department of Neuroscience, Johns Hopkins University School of Medicine, Baltimore, MD, USA<br/>
+<sup>8</sup>McKusick-Nathans Institute of Genetic Medicine, Johns Hopkins University School of Medicine, Baltimore, MD, USA<br/>
+<sup>9</sup>Department of Mental Health, Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA<br/>
+<sup>10</sup>Department of Biostatistics, Johns Hopkins Bloomberg School of Public Health, Baltimore, MD, USA<br/>
+<sup>11</sup>Center for Computational Biology, Johns Hopkins University, Baltimore, MD, USA<br/>
 
 <sup>\*</sup>Correspondence to: apua.paquola@libd.org,  drweinberger@libd.org, jennifer.erwin@libd.org
 
