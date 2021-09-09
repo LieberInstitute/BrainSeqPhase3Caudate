@@ -13,7 +13,7 @@ the BrainSeq Consortium, Thomas M Hyde<sup>1,3,7</sup>, Joel E
 Kleinman<sup>1,2</sup>, Jennifer A Erwin<sup>1-3,7\*</sup>,
 Daniel R Weinberger<sup>1-3,7,8\*</sup>, Apuã CM Paquola<sup>1,3\*</sup>
 
-<sup>1</sup>Lieber Institute for Brain Development, Baltimore, MD, USA
+<sup>1</sup>Lieber Institute for Brain Development, Baltimore, MD, USA<br/>
 <sup>2</sup>Department of Psychiatry & Behavioral Sciences, Johns Hopkins University School of Medicine, Baltimore, MD, USA<br/>
 <sup>3</sup>Department of Neurology, Johns Hopkins University School of Medicine, Baltimore, MD, USA<br/>
 <sup>4</sup>Center for Mathematics, Computation and Cognition, Federal University of ABC, Santo André, SP, Brazil<br/>
