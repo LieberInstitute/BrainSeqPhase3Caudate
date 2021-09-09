@@ -10,3 +10,7 @@ inputs/*
 */dep/*
 dep/*
 dep
+.pybiomart.sqlite
+go-basic.obo
+gene2go
+biomart.csv
