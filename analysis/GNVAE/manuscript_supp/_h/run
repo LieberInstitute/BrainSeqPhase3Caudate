@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mkdir GNVAE_caudate_results
+mkdir GNVAE_caudate_results/go_plots
+mkdir GNVAE_caudate_results/heatmap
+
+cp -v ../../disvae/model/embedding/leiden/_m/* GNVAE_caudate_results/
+cp -v ../../disvae/model/embedding/leiden/go_plot/_m/* GNVAE_caudate_results/go_plots/
+cp -v ../../disvae/model/embedding/leiden/heatmap/* GNVAE_caudate_results/heatmap/
+cp -v ../../disvae/model/embedding/_m/latent_variables.csv GNVAE_caudate_results/
+
+tar -czvf GNVAE_output.tar.gz GNVAE_caudate_results
+rm -rf GNVAE_caudate_results/
