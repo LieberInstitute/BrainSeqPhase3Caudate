@@ -47,7 +47,11 @@ memRES <- memoise::memoise(pca_res_data)
 get_pheno <- function(){
     fname = paste0("/ceph/projects/v4_phase3_paper/inputs/",
                    "phenotypes/_m/caudate_phenotypes.csv")
-    df = data.table::fread(fname) %>% filter(Dx %in% c("CTL"), Age > 17)
+    df = data.table::fread(fname) %>% column_to_rownames("RNum") %>%
+        filter(Dx %in% c("CTL", "SZ"), Age > 17) %>%
+        mutate(across(where(is.character), as.factor)) %>%
+        mutate(across(where(is.factor), as.numeric)) %>%
+        mutate(across(where(is.logical), as.numeric))
     return(df)
 }
 memPHENO <- memoise::memoise(get_pheno)
@@ -127,9 +131,9 @@ tile_plot <- function(covars, fnc, fn, label, qsv=FALSE){
 }
 
 #### Correlation with expression PCs ####
-covarsCont = memPHENO() %>%
-    select(-c("Region", "BrNum", "Protocol", "Sex", "Race", "Dx",
-              "antipsychotics", "lifetime_antipsych"))
+covarsCont = memPHENO() %>% rownames_to_column("RNum") %>%
+    select(-c("Region", "BrNum", "Protocol", "antipsychotics",
+              "lifetime_antipsych"))
 
 ## Normalized expression
 tile_plot(covarsCont, memNORM, "continous_norm", "Normalize")
