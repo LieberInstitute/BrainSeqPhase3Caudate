@@ -1,0 +1,5 @@
+#!/bin/bash
+
+python ../_h/corr_beta.py
+python ../_h/corr_beta_sig.py
+python ../_h/corr_beta_all.py
