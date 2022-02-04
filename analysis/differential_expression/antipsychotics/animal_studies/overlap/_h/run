@@ -9,3 +9,5 @@ for NOTEBOOK in main; do
     jupyter nbconvert --to pdf ${NOTEBOOK}.ipynb
     rm -f tmp_${NOTEBOOK}.ipynb
 done
+
+Rscript ../_h/venn_diagrams.R
