@@ -57,7 +57,7 @@ venn3_diagrams <- function(lab){
     outfile = paste("antipsychotics_venn3", gsub(" ", "_", lab1), sep="_")
     x = list(
         A = animal_studies()[[lab1]] %>% select(Symbol_human) %>% unlist(),
-        B = get_brainseq()[["AP"]] %>% select(Symbol) %>% unlist()
+        B = get_brainseq()[["AP"]] %>% select(Symbol) %>% unlist(),
         C = get_brainseq()[["noAP"]] %>% select(Symbol) %>% unlist()
     )
     names(x) <- c(lab1, "BrainSEQ (SZ AP)", "BrainSEQ (SZ noAP)")
