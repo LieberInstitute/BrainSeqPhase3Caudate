@@ -40,7 +40,7 @@ animal_studies <- function(){
                 "Kim 2018"=kim))
 }
 
-venn_diagrams <- function(lab1, lab2){
+venn2_diagrams <- function(lab1, lab2){
     outfile = paste("antipsychotics_venn", gsub(" ", "_", lab1),
                     gsub(" ", "_", lab2), sep="_")
     x = list(
@@ -53,11 +53,25 @@ venn_diagrams <- function(lab1, lab2){
     save_ggplots(tolower(outfile), vv, 5, 5)
 }
 
+venn3_diagrams <- function(lab){
+    outfile = paste("antipsychotics_venn3", gsub(" ", "_", lab1), sep="_")
+    x = list(
+        A = animal_studies()[[lab1]] %>% select(Symbol_human) %>% unlist(),
+        B = get_brainseq()[["AP"]] %>% select(Symbol) %>% unlist()
+        C = get_brainseq()[["noAP"]] %>% select(Symbol) %>% unlist()
+    )
+    names(x) <- c(lab1, "BrainSEQ (SZ AP)", "BrainSEQ (SZ noAP)")
+    vv <- ggvenn(x, fill_color=ggpubr::get_palette(palette="npg", 3),
+                 stroke_size = 0.5)
+    save_ggplots(tolower(outfile), vv, 5, 5)
+}
+
 ## Generate pretty venn diagrams
 for(lab1 in c("Chong 2002", "Korostynski 2013", "Kim 2018")){
     for(lab2 in c("SZ", "AP", "noAP")){
         venn_diagrams(lab1, lab2)
     }
+    venn3_diagrams(lab1)
 }
 
 #### Reproducibility information ####
