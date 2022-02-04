@@ -69,7 +69,7 @@ venn3_diagrams <- function(lab){
 ## Generate pretty venn diagrams
 for(lab1 in c("Chong 2002", "Korostynski 2013", "Kim 2018")){
     for(lab2 in c("SZ", "AP", "noAP")){
-        venn_diagrams(lab1, lab2)
+        venn2_diagrams(lab1, lab2)
     }
     venn3_diagrams(lab1)
 }
