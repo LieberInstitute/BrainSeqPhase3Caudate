@@ -1,0 +1,14 @@
+#!/bin/bash
+
+EQTL="/ceph/projects/v4_phase3_paper/analysis/eqtl_analysis/diagnosis_interaction"
+
+mkdir diagnosis_interaction_caudate
+for FEATURE in genes transcripts exons junctions; do
+    cp -v $EQTL/$FEATURE/prepare_expression/fastqtl_nominal/_m/Brainseq_LIBD.allpairs.txt.gz \
+       diagnosis_interaction_caudate/${FEATURE}.allpairs.txt.gz
+    cp -v $EQTL/$FEATURE/prepare_expression/fastqtl_nominal/multiple_corrections/_m/Brainseq_LIBD.txt.gz \
+       diagnosis_interaction_caudate/${FEATURE}.eFeature_multicorrection.txt.gz
+done
+
+tar -czvf eQTL_diagnosis_interaction.tar.gz diagnosis_interaction_caudate
+rm -rf diagnosis_interaction_caudate/
