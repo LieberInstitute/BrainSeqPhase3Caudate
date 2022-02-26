@@ -1,0 +1,57 @@
+Significant eQTL (lfsr < 0.05) in at least one ancestry
+effect
+
+eGene:		1873901
+eTranscript:	2921200
+eExon:		4667317
+eJunction:	4931777
+gene_id
+
+eGene:		16476
+eTranscript:	36670
+eExon:		54840
+eJunction:	67007
+gencodeID
+
+eGene:		16476
+eTranscript:	17425
+eExon:		16175
+eJunction:	12380
+Overlap with PGC2+CLOZUK
+effect
+
+eGene:		39316
+eTranscript:	57049
+eExon:		82166
+eJunction:	110601
+gene_id
+
+eGene:		374
+eTranscript:	676
+eExon:		980
+eJunction:	1096
+gencodeID
+
+eGene:		374
+eTranscript:	400
+eExon:		390
+eJunction:	304
+Overlap with PGC3
+effect
+
+eGene:		50964
+eTranscript:	101129
+eExon:		140694
+eJunction:	165458
+gene_id
+
+eGene:		511
+eTranscript:	929
+eExon:		1378
+eJunction:	1613
+gencodeID
+
+eGene:		511
+eTranscript:	562
+eExon:		539
+eJunction:	421
