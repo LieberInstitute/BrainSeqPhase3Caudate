@@ -1,4 +1,3 @@
 #!/bin/bash
 
 unzip ../_h/Caudate_SMR.zip
-ln -sfn ../_h/*gz .
