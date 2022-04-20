@@ -5,6 +5,6 @@ cp -v ../../_m/eqtl_* smr_caudate_analysis/
 cp -v ../../_h/gtex.eqtl_transcripts.eqtl_p0.05.gwas_p0.05.smr_p0.05.csv \
    smr_caudate_analysis/
 
-tar -czvf Brainseq_LIBD_caudate_SMR_q0.05_HEIDI_p0.01_4features.tar.gz \
+tar -czvf Brainseq_LIBD_caudate_SMR_fdr0.05_HEIDI_p0.01_4features.tar.gz \
     smr_caudate_analysis
 rm -rf smr_caudate_analysis/
