@@ -49,7 +49,8 @@ def cal_enrichment():
 @lru_cache()
 def corr_beta():
     twas = get_twas().loc[:, ["FILE", "TWAS.Z"]]
-    smr = get_smr().loc[:, ["ensemblID", "b_SMR"]]
+    smr = get_smr()[(get_smr()["FDR"] < 0.05) &
+                    (get_smr()["p_HEIDI"] > 0.01)].loc[:, ["ensemblID","b_SMR"]]
     df = pd.merge(twas, smr, left_on="FILE", right_on="ensemblID")
     return spearmanr(df.b_SMR, df["TWAS.Z"])
 
