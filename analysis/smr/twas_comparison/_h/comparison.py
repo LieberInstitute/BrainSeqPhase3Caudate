@@ -6,6 +6,13 @@ from functools import lru_cache
 from scipy.stats import fisher_exact, spearmanr
 
 @lru_cache()
+def gene_annotation():
+    fn = "/ceph/projects/v4_phase3_paper/inputs/counts/gene_annotation/"+\
+        "_m/gene_annotation.tsv"
+    return pd.read_csv(fn, sep='\t')
+
+
+@lru_cache()
 def get_twas():
     """
     Load all TWAS results (heritable features).
@@ -16,31 +23,21 @@ def get_twas():
 
 
 @lru_cache()
-def get_smr_background():
+def get_smr():
     """
     Load SMR results (all).
     """
-    fn = "../../_m/eqtl_gene.Caudate.CAUC.NC_SCZ_BIP.age13.index_p1e-04."+\
-        "SCZ_PGC3_p1e-04.smr.csv.gz"
-    return pd.read_csv(fn, sep=',')
-
-
-@lru_cache()
-def get_smr():
-    """
-    Load significant SMR results.
-    """
-    fn = "../../_m/eqtl_gene.Caudate.CAUC_NC_SCZ_BIP.age13.index_p1e-04"+\
-        ".SCZ_PGC3_p1e-04.smr_q0.05.heidi_p0.01.csv.gz"
-    return pd.read_csv(fn, sep=',')
+    fn = "../../_m/eqtl_genes.eqtl_p1e-04.gwas_p5e-08.csv"
+    return pd.read_csv(fn, sep=',')\
+             .merge(gene_annotation(), left_on="probeID", right_on="featureID")
 
 
 @lru_cache()
 def cal_enrichment():
     twas_uni = set(get_twas().FILE)
     twas_sig = set(get_twas()[(get_twas()["FDR"] < 0.05)].FILE)
-    smr_uni = set(get_smr_background().ensemblID)
-    smr_sig = set(get_smr()[(get_smr()["q_SMR"] < 0.05) &
+    smr_uni = set(get_smr().ensemblID)
+    smr_sig = set(get_smr()[(get_smr()["FDR"] < 0.05) &
                             (get_smr()["p_HEIDI"] > 0.01)].ensemblID)
     yes_twas = twas_sig; yes_smr = smr_sig
     no_twas = twas_uni - twas_sig; no_smr = smr_uni - smr_sig
@@ -52,14 +49,14 @@ def cal_enrichment():
 @lru_cache()
 def corr_beta():
     twas = get_twas().loc[:, ["FILE", "TWAS.Z"]]
-    smr = get_smr_background().loc[:, ["ensemblID", "b_SMR"]]
+    smr = get_smr().loc[:, ["ensemblID", "b_SMR"]]
     df = pd.merge(twas, smr, left_on="FILE", right_on="ensemblID")
     return spearmanr(df.b_SMR, df["TWAS.Z"])
 
 
 def main():
     yes_twas = set(get_twas()[(get_twas()["FDR"] < 0.05)].FILE)
-    yes_smr = set(get_smr()[(get_smr()["q_SMR"] < 0.05) &
+    yes_smr = set(get_smr()[(get_smr()["FDR"] < 0.05) &
                             (get_smr()["p_HEIDI"] > 0.01)].ensemblID)
     with open("summary.log", "w") as f:
         print("{} overlapping genes between TWAS and SMR!"\
