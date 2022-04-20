@@ -24,9 +24,11 @@ def get_smr_results(feature):
 def get_top_genes():
     cols = ['gencodeID', 'Symbol', 'ProbeChr', 'Probe_bp', 'topSNP', 'b_SMR',
             'se_SMR', 'p_SMR', 'p_SMR_multi', 'p_HEIDI','nsnp_HEIDI', 'FDR']
-    get_smr_results("gene").loc[:, cols].sort_values("p_SMR")\
-        .groupby("gencodeID").first().reset_index().sort_values("FDR")\
-        .head(25).to_csv("smr_top25.tsv", sep='\t', index=False)
+    df = get_smr_results("gene").loc[:, cols]
+    df.loc[(df["FDR"] < 0.05) & (df["p_HEIDI"] > 0.01)]\
+      .sort_values("p_SMR").groupby("gencodeID").first()\
+      .reset_index().sort_values("FDR")\
+      .head(25).to_csv("smr_top25.tsv", sep='\t', index=False)
 
 
 @lru_cache()
@@ -50,10 +52,10 @@ def clean_data():
 @lru_cache()
 def get_sig_smr(fdr=0.05):
     genes, trans, exons, juncs = clean_data()
-    genes = genes[(genes["FDR"] < fdr)].copy()
-    trans = trans[(trans["FDR"] < fdr)].copy()
-    exons = exons[(exons["FDR"] < fdr)].copy()
-    juncs = juncs[(juncs["FDR"] < fdr)].copy()
+    genes = genes[(genes["FDR"] < fdr) & (genes["p_HEIDI"] > 0.01)].copy()
+    trans = trans[(trans["FDR"] < fdr) & (trans["p_HEIDI"] > 0.01)].copy()
+    exons = exons[(exons["FDR"] < fdr) & (exons["p_HEIDI"] > 0.01)].copy()
+    juncs = juncs[(juncs["FDR"] < fdr) & (juncs["p_HEIDI"] > 0.01)].copy()
     return genes, trans, exons, juncs
 
 
