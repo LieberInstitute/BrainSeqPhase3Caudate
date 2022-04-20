@@ -1,32 +1,40 @@
 """
 This script summarizes the results from SMR analysis performed by Danny Chen.
 """
-
 import pandas as pd
 from functools import lru_cache
 
 @lru_cache()
+def get_gene_annotation(feature):
+    fn = "/ceph/projects/v4_phase3_paper/inputs/counts/gene_annotation/"+\
+        "_m/%s_annotation.tsv" % feature
+    return pd.read_csv(fn, sep='\t')
+
+
+@lru_cache()
 def get_smr_results(feature):
-    fn = "../../_m/eqtl_%s.Caudate.CAUC_NC_SCZ_BIP.age13." % feature+\
-        "index_p1e-04.SCZ_PGC3_p1e-04.smr_q0.05.heidi_p0.01.csv.gz"
-    return pd.read_csv(fn)
+    feat_map = {"gene": "genes", "tx": "transcripts",
+                "exon": "exons", "jxn": "junctions"}
+    fn = "../../_m/eqtl_%s.eqtl_p1e-04.gwas_p5e-08.csv" % feat_map[feature]
+    return pd.read_csv(fn).merge(get_gene_annotation(feature),
+                                 left_on="probeID", right_on="featureID")
 
 
 @lru_cache()
 def get_top_genes():
-    cols = ['gencodeID', 'Symbol', 'seqnames', 'Probe_bp', 'topSNP',
-            'b_SMR', 'se_SMR', 'p_SMR', 'p_HEIDI','nsnp_HEIDI', 'q_SMR']
+    cols = ['gencodeID', 'Symbol', 'ProbeChr', 'Probe_bp', 'topSNP', 'b_SMR',
+            'se_SMR', 'p_SMR', 'p_SMR_multi', 'p_HEIDI','nsnp_HEIDI', 'FDR']
     get_smr_results("gene").loc[:, cols].sort_values("p_SMR")\
-        .groupby("gencodeID").first().reset_index().sort_values("q_SMR")\
+        .groupby("gencodeID").first().reset_index().sort_values("FDR")\
         .head(25).to_csv("smr_top25.tsv", sep='\t', index=False)
 
 
 @lru_cache()
 def clean_data():
-    cols = ['probeID', 'gencodeID', 'Symbol', 'seqnames', 'Probe_bp', 'topSNP',
+    cols = ['probeID', 'gencodeID', 'Symbol', 'ProbeChr', 'Probe_bp', 'topSNP',
             'A1', 'A2', 'Freq', 'b_GWAS', 'se_GWAS', 'p_GWAS', 'b_eQTL',
-            'se_eQTL', 'p_eQTL', 'b_SMR', 'se_SMR', 'p_SMR', 'p_HEIDI',
-            'nsnp_HEIDI', 'clm_id', 'q_SMR']
+            'se_eQTL', 'p_eQTL', 'b_SMR', 'se_SMR', 'p_SMR', 'p_SMR_multi',
+            'p_HEIDI', 'nsnp_HEIDI', 'FDR']
     genes = get_smr_results("gene").loc[:, cols]
     trans = get_smr_results("tx")\
         .rename(columns={"gene_name": "Symbol", "gene_id": "gencodeID"})\
@@ -40,8 +48,18 @@ def clean_data():
 
 
 @lru_cache()
-def prep_smr():
+def get_sig_smr(fdr=0.05):
     genes, trans, exons, juncs = clean_data()
+    genes = genes[(genes["FDR"] < fdr)].copy()
+    trans = trans[(trans["FDR"] < fdr)].copy()
+    exons = exons[(exons["FDR"] < fdr)].copy()
+    juncs = juncs[(juncs["FDR"] < fdr)].copy()
+    return genes, trans, exons, juncs
+
+
+@lru_cache()
+def prep_smr():
+    genes, trans, exons, juncs = get_sig_smr()
     genes["Type"] = "Gene"
     trans["Type"] = "Transcript"
     exons["Type"] = "Exon"
@@ -53,12 +71,12 @@ def prep_smr():
 
 
 def print_summary():
-    genes, trans, exons, juncs = clean_data()
+    genes, trans, exons, juncs = get_sig_smr()
     w_mode = "w"
     statement = "SMR results"
     with open("summarize_results.log", mode=w_mode) as f:
         print(statement, file=f)
-        for variable in ["clm_id", "probeID", "gencodeID"]:
+        for variable in ["probeID", "gencodeID"]:
             print(variable, file=f)
             gg = len(set(genes[variable]))
             tt = len(set(trans[variable]))
@@ -71,7 +89,7 @@ def print_summary():
 def main():
     get_top_genes()
     print_summary()
-    prep_smr().to_csv("BrainSeq_caudate_smr_q0.05.txt.gz",
+    prep_smr().to_csv("BrainSeq_caudate_smr_fdr0.05.txt.gz",
                       sep="\t", index=False)
 
 
