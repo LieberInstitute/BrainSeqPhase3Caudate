@@ -1,16 +1,16 @@
 ## GO analysis using GOATools
-import functools
 import pandas as pd
 import collections as cx
 from pybiomart import Dataset
+from functools import lru_cache
 # GO analysis
+from goatools.obo_parser import GODag
 from goatools.base import download_go_basic_obo
 from goatools.base import download_ncbi_associations
-from goatools.obo_parser import GODag
 from goatools.anno.genetogo_reader import Gene2GoReader
 from goatools.goea.go_enrichment_ns import GOEnrichmentStudyNS
 
-@functools.lru_cache()
+@lru_cache()
 def get_database():
     dataset = Dataset(name="hsapiens_gene_ensembl",
                       host="http://www.ensembl.org",
@@ -22,15 +22,22 @@ def get_database():
     return db
 
 
-@functools.lru_cache()
+@lru_cache()
+def gene_annotation():
+    fn = "/ceph/projects/v4_phase3_paper/inputs/counts/gene_annotation/"+\
+        "_m/gene_annotation.tsv"
+    return pd.read_csv(fn, sep='\t')
+
+
+@lru_cache()
 def get_smr():
-    fn = '../../_m/eqtl_gene.Caudate.CAUC_NC_SCZ_BIP.age13.index_p1e-04'+\
-        '.SCZ_PGC3_p1e-04.smr_q0.05.heidi_p0.01.csv.gz'
+    fn = '../../_m/eqtl_genes.eqtl_p1e-04.gwas_p5e-08.csv'
     df = pd.read_csv(fn, sep=',')
-    return df[(df["q_SMR"] < 0.05) & (df["p_HEIDI"] > 0.01)].copy()
+    return df[(df["FDR"] < 0.05) & (df["p_HEIDI"] > 0.01)]\
+        .merge(gene_annotation(), left_on="probeID", right_on="featureID")
 
 
-@functools.lru_cache()
+@lru_cache()
 def convert2entrez():
     if 'EntrezID' in get_smr().columns:
         return get_smr().rename(columns={'EntrezID': 'entrezgene_id'})
@@ -39,12 +46,12 @@ def convert2entrez():
                                right_on='ensembl_gene_id')
 
 
-@functools.lru_cache()
+@lru_cache()
 def get_upregulated():
     return convert2entrez().loc[(convert2entrez()['b_SMR'] > 0)]
 
 
-@functools.lru_cache()
+@lru_cache()
 def get_downregulated():
     return convert2entrez().loc[(convert2entrez()['b_SMR'] < 0)]
 
