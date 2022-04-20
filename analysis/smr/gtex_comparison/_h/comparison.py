@@ -7,8 +7,7 @@ from scipy.stats import spearmanr
 
 @lru_cache()
 def get_smr():
-    fn = "../../_m/eqtl_gene.Caudate.CAUC_NC_SCZ_BIP.age13.index_p1e-04"+\
-        ".SCZ_PGC3_p1e-04.smr_q0.05.heidi_p0.01.csv.gz"
+    fn = "../../_m/eqtl_genes.eqtl_p1e-04.gwas_p5e-08.csv"
     return pd.read_csv(fn, sep=',')
 
 
@@ -21,7 +20,7 @@ def get_gtex():
 
 @lru_cache()
 def merge_data():
-    bs = get_smr().loc[:, ["probeID", "b_SMR", "p_SMR", "p_HEIDI", "q_SMR"]]\
+    bs = get_smr().loc[:, ["probeID", "b_SMR", "p_SMR", "p_HEIDI", "FDR"]]\
                   .drop_duplicates(subset="probeID")
     gtex = get_gtex().loc[:, ["probeID", "b_SMR", "p_SMR", "p_HEIDI"]]\
                      .drop_duplicates(subset="probeID")
@@ -37,7 +36,7 @@ def main():
     gtex = get_gtex()[(get_gtex()["p_HEIDI"] > 0.01) &
                       (get_gtex()["p_SMR"] < 0.05)].copy()
     bs = get_smr()[(get_smr()["p_HEIDI"] > 0.01) &
-                   (get_smr()["q_SMR"] < 0.05)].copy()
+                   (get_smr()["FDR"] < 0.05)].copy()
     with open("summary.log", "w") as f:
         shared = len(set(gtex.probeID) & set(bs.probeID))
         print("There are %d shared SMR assocations (SMR < 0.05, HEIDI > 0.01)!"
