@@ -16,3 +16,20 @@ done
 
 tar -czvf BrainSeq_eQTL_ancestry_caudate.tar.gz ancestry_caudate_eqtl
 rm -rf ancestry_caudate_eqtl/
+
+mkdir caudate_mash_eqtl
+for FEATURE in genes transcripts exons junctions; do
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+done
+
+cp -v ../../meta_analysis/summary_table/_m/BrainSeq_caudate_eQTL* \
+   caudate_mash_eqtl/
+tar -czvf BrainSeq_caudate_4features_mash_associations.tar.gz caudate_mash_eqtl
+rm -rf caudate_mash_eqtl/
