@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir fastenloc_ea
+cp -v /ceph/projects/v4_phase3_paper/analysis/eqtl_analysis/colocalization_by_ancestry/ea_only/genes/dapg_finemap/fastENLOC/_m/* fastenloc_ea/
+
+tar -czvf BrainSeq_caudate_EA_SZ_colocalization.tar.gz fastenloc_ea/
+rm -rf fastenloc_ea/
