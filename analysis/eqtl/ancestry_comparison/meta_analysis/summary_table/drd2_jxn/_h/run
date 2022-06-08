@@ -1,0 +1,5 @@
+#!/bin/bash
+
+zcat ../../_m/BrainSeq_caudate_eQTL.txt.gz | grep ENSG00000149295 | \
+    grep Junction > junctions.txt
+python ../_h/junction_comparison.py

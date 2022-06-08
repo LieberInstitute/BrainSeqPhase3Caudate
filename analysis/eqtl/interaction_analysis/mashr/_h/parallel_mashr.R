@@ -38,12 +38,6 @@ parser$add_argument("-t", "--threads", type="integer", default=10,
                     help="Number of threads to run on [default: %default]")
 args <- parser$parse_args()
 
-if(args$feature == "genes"){
-    percentage = 0.05
-} else {
-    percentage = 0.01
-}
-
 ## Run mashr for specific feature
 if(args$run_chunk){
     save_results_chunk(args$feature, args$chunk_size, args$threads)

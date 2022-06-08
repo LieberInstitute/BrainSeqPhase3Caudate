@@ -1,0 +1,16 @@
+Gene Name (Human),Gene,GenBank accession no.,"Relative expression change 
+(haloperidol/control)"
+LXN,Tissue carboxypeptidase inhibitor,U40260 ,2.5
+SCN1B,"Sodium channel, beta 1 subunit",M91808 ,1.9
+CCND3,G1/S-specific cyclin D3,D16309 ,1.85
+KRAS,K-Ras 2B proto-oncogene,U09793 ,1.82
+GPR12,"G-protein-coupled receptor, putative (GPR12)",U12184 ,1.72
+RASA1,Ras-GTPase activating protein,L13151 ,1.6
+SYN2,Synapsin II,M27925 ,1.56
+SLCO1A2,Brain digoxin carrier protein,U88036 ,1.54
+ADORA2A,Adenosine A2A receptor,S47609 ,0.5
+GRIA4,Glutamate receptor 4,M85037 ,0.48
+SCN2B,"Sodium channel, beta 2 subunit",U37026 ,0.47
+RASGRF1,Guanine nucleotide release/exchange factor,X67241 ,0.44
+GIP,Glucose-dependent insulinotropic polypeptide,L08831 ,0.42
+PTMA,Prothymosin-alpha,M20035; M86564,0.35

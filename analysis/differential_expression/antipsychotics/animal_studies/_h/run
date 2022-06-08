@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ln -s ../_h/*csv .
+python ../_h/extract_Korostynski.py

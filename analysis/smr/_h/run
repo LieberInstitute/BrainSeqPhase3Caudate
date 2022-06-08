@@ -1,0 +1,4 @@
+#!/bin/bash
+
+unzip ../_h/Caudate_SMR.zip
+ln -sfn ../_h/gtex.eqtl_transcripts.eqtl_p0.05.gwas_p0.05.smr_p0.05.csv .

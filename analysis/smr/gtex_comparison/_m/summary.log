@@ -1,0 +1,4 @@
+There are 7 shared SMR assocations (SMR < 0.05, HEIDI > 0.01)!
+Spearman corr, BS and GTEx caudate:
+Rho > 0.37, p-value < 5.2e-07
+Fisher Exact Test, Odd ratio = 3.88, p-value < 2.2e-02

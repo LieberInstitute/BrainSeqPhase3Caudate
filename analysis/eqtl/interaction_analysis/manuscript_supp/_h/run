@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir interacting_eqtl_mash
+
+for FEATURE in genes transcripts exons junctions; do
+    cp -v ../../mashr/_m/${FEATURE}/significant_geneSNP_pairs_3tissues.tsv \
+       interacting_eqtl_mash/significant_geneSNP_pairs_3tissues_${FEATURE}.tsv
+done
+
+tar -czvf Brain_LIBD_brain_interaction_4features.tar.gz interacting_eqtl_mash
+rm -rf interacting_eqtl_mash
+
+cp -v ../../mashr/_m/genes/lfsr_allpairs_3tissues.txt.gz \
+   Brainseq_LIBD_brainregions_allpairs_genes.txt.gz

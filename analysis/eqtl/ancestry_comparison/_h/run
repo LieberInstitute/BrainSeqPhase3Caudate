@@ -1,0 +1,13 @@
+#!/bin/bash
+
+parallel -k echo ::: junctions genes > feature.list
+
+cat feature.list | \
+    parallel --jobs 2 "mkdir {}; python ../_h/prep_files.py --feature {}"
+
+rm feature.list
+
+for FEATURE in transcripts exons; do
+    mkdir $FEATURE
+    python ../_h/prep_files.py --feature $FEATURE
+done

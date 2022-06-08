@@ -1,0 +1,35 @@
+#!/bin/bash
+
+EQTL="/ceph/projects/v4_phase3_paper/analysis/eqtl_analysis"
+
+mkdir ancestry_caudate_eqtl
+for FEATURE in genes transcripts exons junctions; do
+    cp -v $EQTL/aa_only/$FEATURE/expression_gct/prepare_expression/fastqtl_nominal/_m/Brainseq_LIBD.allpairs.txt.gz \
+       ancestry_caudate_eqtl/${FEATURE}.AA.allpairs.txt.gz
+    cp -v $EQTL/aa_only/$FEATURE/expression_gct/prepare_expression/fastqtl_permutation/_m/Brainseq_LIBD.genes.txt.gz \
+       ancestry_caudate_eqtl/${FEATURE}.AA.genes.txt.gz
+    cp -v $EQTL/ea_only/$FEATURE/expression_gct/prepare_expression/fastqtl_nominal/_m/Brainseq_LIBD.allpairs.txt.gz \
+       ancestry_caudate_eqtl/${FEATURE}.EA.allpairs.txt.gz
+    cp -v $EQTL/ea_only/$FEATURE/expression_gct/prepare_expression/fastqtl_permutation/_m/Brainseq_LIBD.genes.txt.gz \
+       ancestry_caudate_eqtl/${FEATURE}.EA.genes.txt.gz
+done
+
+tar -czvf BrainSeq_eQTL_ancestry_caudate.tar.gz ancestry_caudate_eqtl
+rm -rf ancestry_caudate_eqtl/
+
+mkdir caudate_mash_eqtl
+for FEATURE in genes transcripts exons junctions; do
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+    cp -v ../../meta_analysis/_m/${FEATURE}/lfsr_allpairs_ancestry.txt.gz \
+       caudate_mash_eqtl/lfsr_allpairs_ancestry_${FEATURE}.txt.gz
+done
+
+cp -v ../../meta_analysis/summary_table/_m/BrainSeq_caudate_eQTL* \
+   caudate_mash_eqtl/
+tar -czvf BrainSeq_caudate_4features_mash_associations.tar.gz caudate_mash_eqtl
+rm -rf caudate_mash_eqtl/
